@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pioneer Bank</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- css -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="login-area">
+    <h1 class="text-center">Welcome to pioneer Bank</h1>
+    <div class="submit-area">
+      <h4>Login</h4>
+      <input type="text" class="form-control" placeholder="Email">
+      <br>
+      <input type="password" class="form-control" placeholder="Password">
+      <br>
+      <button id="login" class="btn btn-success">Enter</button>
+    </div>
+  </div>
+
+  <div id="transaction-area">
+    <div class="row">
+      <div class="col-4">
+        <div class="desposit status">
+          <h5> Desposit</h5>
+          <h1> $ <span id="currentDeposit">00</span></h1>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="withdraw status">
+          <h5> Withdraw</h5>
+          <h1> $ <span id="currentWithdraw"> 00</span> </h1>
+        </div>
+      </div>
+      <div class="col-4 ">
+        <div class="balance status">
+          <h5> Balance</h5>
+          <h1> $ <span id="currentBalance"> 1240 </span></h1>
+        </div>
+       </div>
+    </div>
+    <div class="row"> 
+      <div class="col-6">
+        <div class="submit-area">
+          <h5>Deposit</h5> 
+        <input id="depositAmound" class="form-control" type="number" placeholder="$ amount you want to deposit" aria-label="default input example"><br>
+        <button id="deposit" type="submit" class="btn btn-success mb-2">Deposit</button>
+        </div>
+        
+      </div>
+      <div class="col-6 ">
+        <div class="submit-area">
+          <h5>Withdrow</h5>
+        <input id="withdrowAmound" class="form-control" type="number" placeholder="$ amount you want to withdrow" aria-label="default input example"><br>
+        <button id="withdrow" type="submit" class="btn btn-success mb-2">Withdrow</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script>
+
+    // login button even handler
+    var loginBtn = document.getElementById("login");
+    loginBtn.addEventListener("click",function(){
+     var loginArea = document.getElementById("login-area");
+     loginArea.style.display = "none";
+
+     var transactionArea = document.getElementById("transaction-area");
+     transactionArea.style.display = "block"
+    });
+    // deposit even handler
+    var depositBtn = document.getElementById("deposit");
+    depositBtn.addEventListener("click",function(){
+     var depositAmound = document.getElementById("depositAmound").value;
+     var depositNumber = parseFloat(depositAmound);
+
+     var currentDeposit = document.getElementById("currentDeposit").innerText;
+     var currentDepositNumber = parseFloat(currentDeposit);
+     var totalDeposit = depositNumber + currentDepositNumber;
+     document.getElementById("currentDeposit").innerText = totalDeposit;
+     document.getElementById("depositAmound").value = "";
+
+     var currentBalance = document.getElementById("currentBalance").innerText;
+     var currentBalanceNumber = parseFloat(currentBalance);
+     var totalBalanceNumber = depositNumber + currentBalanceNumber;
+     document.getElementById("currentBalance").innerText = totalBalanceNumber;
+    })
+    // withdrow even handler
+    var withdrowBtn = document.getElementById("withdrow");
+    withdrowBtn.addEventListener("click",function(){
+      var withdrowAmound = document.getElementById("withdrowAmound").value;
+      var withdrowAmoundNumber = parseFloat(withdrowAmound);
+
+      var currentWithdraw = document.getElementById("currentWithdraw").innerText;
+      var currentWithdrawNumber = parseFloat(currentWithdraw);
+
+      var tatalWithdrawNumber = withdrowAmoundNumber + currentWithdrawNumber;
+      document.getElementById("currentWithdraw").innerText = tatalWithdrawNumber;
+      document.getElementById("withdrowAmound").value = " ";
+
+      var currentBalance = document.getElementById("currentBalance").innerText;
+      var currentBalanceNumber = parseFloat(currentBalance);
+      var tatalWithdraw =   currentBalanceNumber - withdrowAmoundNumber ;
+      document.getElementById("currentBalance").innerText = tatalWithdraw;
+    })
+    
+    </script>
+</body>
+</html>
